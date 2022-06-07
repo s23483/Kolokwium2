@@ -6,7 +6,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Kolokwium2.Controllers
 {
-    [Route("api/album")]
+    [Route("api/musician")]
     [ApiController]
     public class MusicianContoller : ControllerBase
     {

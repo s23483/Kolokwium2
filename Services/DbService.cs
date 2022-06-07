@@ -48,11 +48,12 @@ namespace Kolokwium2.Services
             try
             {
                 var musician = new Musician() {IdMusician = id};
-                if (await _dbContext.Musicians.FindAsync(id) == null)
+                 var entity = _dbContext.Attach(musician);
+                if (entity.Entity.Nickname == null)
                 {
                     return 1;
                 }
-                _dbContext.Attach(musician);
+                
                 if (await _dbContext.MusicianTracks.Include(e => e.IdTrack).Where(e => 
                         (e.IdMusician == id && _dbContext.Tracks.Find(e.IdTrack).IdMusicAlbum!=null))
                     .AnyAsync())
